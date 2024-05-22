@@ -1,0 +1,50 @@
+.container {
+	width: 100%;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	padding: 10px 10px 20px;
+
+	border-radius: 15px;
+	border: 1px solid #00ff00;
+
+	text-align: center;
+}
+
+.fieldTitle {
+	margin-top: 0;
+	margin-bottom: 20px;
+
+	font-size: 24px;
+	text-transform: uppercase;
+	color: #00ff00;
+}
+
+.field {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+}
+
+.fieldCell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80px;
+	height: 80px;
+
+	font-size: 46px;
+	font-weight: 600;
+	border: 1px solid #00ff00;
+}
+
+.fieldCell-green {
+	color: #00ff00;
+}
+
+.fieldCell-red {
+	color: #ff0000;
+}
