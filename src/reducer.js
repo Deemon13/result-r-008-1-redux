@@ -13,6 +13,12 @@ export const reducer = (state = initialState, action) => {
 		case 'NEW_GAME':
 			return initialState;
 
+		case 'SET_PLAYER':
+			return { ...state, currentPlayer: payload };
+
+		case 'SET_DRAW':
+			return { ...state, isDraw: payload };
+
 		default:
 			return state;
 	}

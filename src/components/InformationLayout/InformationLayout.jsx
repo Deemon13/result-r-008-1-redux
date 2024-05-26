@@ -1,8 +1,19 @@
 import PropTypes from 'prop-types';
 
 import styles from './informationLayout.module.css';
+import { store } from '../../store';
+
+// let status;
+// if (store.getState().isDraw) {
+// 	status = 'Ничья';
+// } else if (!store.getState().isDraw && store.getState().isGameEnded) {
+// 	status = `Победа: ${store.getState().currentPlayer}`;
+// } else if (!store.getState().isDraw && !store.getState().isGameEnded) {
+// 	status = `Ходит: ${store.getState().currentPlayer}`;
+// }
 
 export const InformationLayout = ({ status, player }) => {
+	// export const InformationLayout = ({ player }) => {
 	let colorStatus;
 	colorStatus =
 		player === 'X' && status !== 'Ничья'

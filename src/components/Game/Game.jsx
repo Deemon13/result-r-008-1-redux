@@ -8,7 +8,7 @@ import { GameLayout } from '../../components';
 import { WIN_PATTERNS } from '../../data/win-patterns';
 
 export const Game = () => {
-	console.log(store.getState());
+	// console.log(store.getState());
 	// const [currentPlayer, setCurrentPlayer] = useState('X');
 	// const [isGameEnded, setIsGameEnded] = useState(false);
 	// const [isDraw, setIsDraw] = useState(false);
@@ -55,6 +55,9 @@ export const Game = () => {
 		}
 
 		setCurrentPlayer(prevState => (prevState === 'X' ? '0' : 'X'));
+		// currentPlayer === 'X'
+		// 	? store.dispatch({ type: 'SET_PLAYER', payload: '0' })
+		// 	: store.dispatch({ type: 'SET_PLAYER', payload: 'X' });
 	}
 
 	function setWinner(fieldCells, player) {
@@ -86,6 +89,9 @@ export const Game = () => {
 			return null;
 		}
 		setCurrentPlayer(prevState => (prevState === 'X' ? '0' : 'X'));
+		// currentPlayer === 'X'
+		// 	? store.dispatch({ type: 'SET_PLAYER', payload: '0' })
+		// 	: store.dispatch({ type: 'SET_PLAYER', payload: 'X' });
 	}
 
 	if (currentPlayer === '0') {
@@ -94,6 +100,7 @@ export const Game = () => {
 
 	if (field.every(cell => cell !== '') && !isDraw && !isGameEnded) {
 		setIsDraw(true);
+		// store.dispatch({ type: 'SET_DRAW', payload: true });
 	}
 
 	let status;
@@ -105,16 +112,16 @@ export const Game = () => {
 		status = `Ходит: ${currentPlayer}`;
 	}
 
-	function handleResetGame() {
-		// setCurrentPlayer('X');
-		// setIsDraw(false);
-		// setIsGameEnded(false);
-		// setField([...fieldArr]);
-		// setFreeCells([0, 1, 2, 3, 4, 5, 6, 7, 8]);
-		console.log(store.getState());
-		store.dispatch({ type: 'NEW_GAME' });
-		console.log(store.getState());
-	}
+	// function handleResetGame() {
+	// setCurrentPlayer('X');
+	// setIsDraw(false);
+	// setIsGameEnded(false);
+	// setField([...fieldArr]);
+	// setFreeCells([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+	// 	console.log(store.getState());
+	// 	store.dispatch({ type: 'NEW_GAME' });
+	// 	console.log(store.getState());
+	// }
 
 	return (
 		<GameLayout
@@ -122,7 +129,7 @@ export const Game = () => {
 			player={currentPlayer}
 			field={field}
 			handleClick={handleClickOnFieldCell}
-			resetGame={handleResetGame}
+			// resetGame={handleResetGame}
 		/>
 	);
 };
