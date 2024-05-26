@@ -1,17 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { store } from '../../store';
 
 import { GameLayout } from '../../components';
 
-import { field as fieldArr } from '../../data/field';
+// import { field as fieldArr } from '../../data/field';
 import { WIN_PATTERNS } from '../../data/win-patterns';
 
 export const Game = () => {
-	let [currentPlayer, setCurrentPlayer] = useState('X');
-	const [isGameEnded, setIsGameEnded] = useState(false);
-	const [isDraw, setIsDraw] = useState(false);
-	const [field, setField] = useState(fieldArr);
+	console.log(store.getState());
+	// const [currentPlayer, setCurrentPlayer] = useState('X');
+	// const [isGameEnded, setIsGameEnded] = useState(false);
+	// const [isDraw, setIsDraw] = useState(false);
+	// const [field, setField] = useState(fieldArr);
 
-	const [freeCells, setFreeCells] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+	// const [freeCells, setFreeCells] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+	const [currentPlayer, setCurrentPlayer] = useState(store.getState().currentPlayer);
+	const [isGameEnded, setIsGameEnded] = useState(store.getState().isGameEnded);
+	const [isDraw, setIsDraw] = useState(store.getState().isDraw);
+	const [field, setField] = useState(store.getState().field);
+
+	const [freeCells, setFreeCells] = useState(store.getState().freCells);
+
+	useEffect(() => {
+		store.subscribe(() => {
+			const state = store.getState();
+			setCurrentPlayer(state.currentPlayer);
+			setIsGameEnded(state.isGameEnded);
+			setIsDraw(state.isDraw);
+			setField(state.field);
+			setFreeCells(state.freCells);
+		});
+	}, [currentPlayer, isGameEnded, isDraw, field, freeCells]);
 
 	const newFields = field.slice();
 
@@ -86,11 +106,14 @@ export const Game = () => {
 	}
 
 	function handleResetGame() {
-		setCurrentPlayer('X');
-		setIsDraw(false);
-		setIsGameEnded(false);
-		setField([...fieldArr]);
-		setFreeCells([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+		// setCurrentPlayer('X');
+		// setIsDraw(false);
+		// setIsGameEnded(false);
+		// setField([...fieldArr]);
+		// setFreeCells([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+		console.log(store.getState());
+		store.dispatch({ type: 'NEW_GAME' });
+		console.log(store.getState());
 	}
 
 	return (
